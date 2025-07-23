@@ -534,9 +534,11 @@ public class NfcPlugin extends CordovaPlugin {
         Iterator<IntentFilter> iterator = intentFilters.iterator();
         while (iterator.hasNext()) {
             IntentFilter intentFilter = iterator.next();
-            String mt = intentFilter.getDataType(0);
-            if (mimeType.equals(mt)) {
-                iterator.remove();
+            if (intentFilter.countDataTypes() > 0) {
+                String mt = intentFilter.getDataType(0);
+                if (mimeType.equals(mt)) {
+                    iterator.remove();
+                }
             }
         }
     }
